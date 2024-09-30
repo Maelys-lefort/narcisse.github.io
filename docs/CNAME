@@ -1,1 +1,104 @@
-narcisse.io
+<!DOCTYPE html>
+<html lang="fr">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superposition de textes avec clic</title>
+    <style type="text/css">
+        body {
+            font-family: "Chakra Petch", sans-serif;   font-weight: 500;
+            margin: 0;
+            padding: 5px;
+      background-image:url("https://cgaxisimages.fra1.cdn.digitaloceanspaces.com/2018/11/rough_grey_stone_5_stone_74_glossiness.jpg");
+      }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            padding: 5px;
+            text-align:justify;
+        }
+
+        .text {
+            font-size: 1.33em;
+            line-height: 1.65;
+            position: absolute;
+            top: 5;
+            left: 0;
+            width: 100%;
+            white-space: pre-wrap;
+            cursor: pointer;
+            transition: opacity 0.5s ease; /* Transition en douceur */
+
+      
+        }
+
+        #text-back {
+            z-index: 1;
+            opacity: 0; /* Caché par défaut */
+            visibility: hidden; /* Rendre complètement invisible */
+        }
+
+        #text-front {
+            z-index: 2;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <p id="text-front" class="text">Ad eo heron Ruoimacos qui vivocx matre et maponem mémonet, annte viauenon boudilon. Ad amigon Lucius Valerion. Ad cotimonos samos, annis singuis.
+  <b>  — Dumnorix</b>
+
+Lucius Valerios. Uirix boudīux, guella Dumnorīgis dubitoi. Poblo uirīx menāti uissuot iratos eius.
+  <b>  — Druidā Eldarix</b>
+
+Boudīlos netis enemiā duoredrān blediros ubi broderes ēssi possent. Ad patre mēmi Dumnorīgim, ductam ad douregēt Ruoimācos. Cama tonciti et brāti sonitūs.
+  <b>  — Bledīros Brennus</b>
+      </p>
+<p id="text-back" class="text">À ce héros romain qui a épargné ma femme et mon fils, loin des sentiers de la guerre. À mon ami Lucius Valerius. À nos retrouvailles, une fois par an. 
+  <b>  — Dumnorix</b>
+
+Lucius Valerius. Homme chanceux, que la lame de Dumnorix ait hésité. Peu d’hommes survivent à sa colère.
+  <b>  — Druide Eldarix</b>
+
+La guerre fait des ennemis là où il pourrait y avoir des frères. À mon père, Dumnorix, emmené dans les tréfonds de Rome. Que leur chemin se rencontre de nouveau, et que la paix résonne en eux.  
+  <b>   — Guerrier Brennus </b>
+      </p>
+    </div>
+
+    <script type="text/javascript">
+        const textFront = document.getElementById('text-front');
+        const textBack = document.getElementById('text-back');
+
+        // On initialise l'état (texte avant visible, texte arrière caché)
+        let isFrontVisible = true;
+
+        // Gestion du clic
+        textFront.addEventListener('click', function () {
+            if (isFrontVisible) {
+                textFront.style.opacity = '0'; // Cache progressivement le texte avant
+                textFront.style.visibility = 'hidden'; // Le rend invisible une fois caché
+                textBack.style.opacity = '1'; // Montre progressivement le texte arrière
+                textBack.style.visibility = 'visible'; // Rend visible le texte arrière
+                isFrontVisible = false;
+            }
+        });
+
+        textBack.addEventListener('click', function () {
+            if (!isFrontVisible) {
+                textBack.style.opacity = '0'; // Cache progressivement le texte arrière
+                textBack.style.visibility = 'hidden'; // Le rend invisible une fois caché
+                textFront.style.opacity = '1'; // Montre progressivement le texte avant
+                textFront.style.visibility = 'visible'; // Rend visible le texte avant
+                isFrontVisible = true;
+            }
+        });
+    </script>
+</body>
+</html>
